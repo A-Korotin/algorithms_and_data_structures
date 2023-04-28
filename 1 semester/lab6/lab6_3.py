@@ -51,6 +51,17 @@ def main():
 
 if __name__ == "__main__":
     start_mem_trace()
+
+    with open('io_folder/input.txt', 'w') as file:
+        n = 10 ** 5
+        file.write(f'{n}\n{n}\n')
+        for i in range(n//2):
+            file.write(f'add {i}\n')
+        for i in range(n//4):
+            file.write(f'find {i}\n')
+        for i in range(n//4):
+            file.write(f'check {i}\n')
+
     time, _ = get_function_execution_time_sec(main)
     mem = get_max_mem_usage_mb()
     print_time_and_mem_usage_summary(time, mem)

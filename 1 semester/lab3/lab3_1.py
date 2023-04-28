@@ -56,26 +56,57 @@ def gen_test_arrays(n: int) -> Tuple[List[int], List[int], List[int]]:
     rev = sorted(generate_random_array(n, (-10**9, 10**9)), reverse=True)
     return rev, sor, rand
 
+def __merge(first: List[int], second: List[int]) -> List[int]:
+    ans = []
+    for _ in range(len(first) + len(second)):
+        if len(first) > 0 and len(second) > 0:
+            if first[0] < second[0]:
+                ans += [first.pop(0)]
+            else:
+                ans += [second.pop(0)]
+        elif len(first) > 0:
+            ans += [first.pop(0)]
+        elif len(second) > 0:
+            ans += [second.pop(0)]
+    return ans
+
+
+# sort
+def merge_sort(a: List[int]) -> List[int]:
+    if len(a) > 1:
+        return __merge(merge_sort(a[:len(a) // 2]), merge_sort(a[len(a) // 2:]))
+
+    return a
+
 
 if __name__ == "__main__":
-    n_ranges = (10**3, 10**4, 10**5)
+    n_ranges = (10**3, 10**4, 7*10**4)
     labels = ("reversed", "sorted", "random")
 
     for n in n_ranges:
-        print("\n\n")
-        print("Partition " + str(n))
+        print(f"{n}\n\n")
         for i, arr in enumerate(gen_test_arrays(n)):
             start_mem_trace()
-            time, ans = get_function_execution_time_sec(rand_qsort, arr)
-            print(labels[i])
+            time, ans = get_function_execution_time_sec(merge_sort, arr)
+            print(f'{labels[i]}')
             mem = get_max_mem_usage_mb()
             print_time_and_mem_usage_summary(time, mem)
-        print("\n\n")
-        print("Partition 3 " + str(n))
-        for i, arr in enumerate(gen_test_arrays(n)):
-            start_mem_trace()
-            time, ans = get_function_execution_time_sec(rand_qsort_3, arr)
-            print(labels[i])
-            mem = get_max_mem_usage_mb()
-            print_time_and_mem_usage_summary(time, mem)
+
+    # for n in n_ranges:
+    #     print("\n\n")
+    #     print("Partition " + str(n))
+    #     for i, arr in enumerate(gen_test_arrays(n)):
+    #         start_mem_trace()
+    #         time, ans = get_function_execution_time_sec(rand_qsort, arr)
+    #         print(labels[i])
+    #         mem = get_max_mem_usage_mb()
+    #         print_time_and_mem_usage_summary(time, mem)
+    #     print("\n\n")
+    #     print("Partition 3 " + str(n))
+    #     for i, arr in enumerate(gen_test_arrays(n)):
+    #         start_mem_trace()
+    #         time, ans = get_function_execution_time_sec(rand_qsort_3, arr)
+    #         print(labels[i])
+    #         mem = get_max_mem_usage_mb()
+    #         print_time_and_mem_usage_summary(time, mem)
 

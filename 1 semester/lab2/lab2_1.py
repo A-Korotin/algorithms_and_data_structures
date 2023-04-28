@@ -33,8 +33,7 @@ def merge_sort(a: List[int]) -> List[int]:
 if __name__ == "__main__":
     start_mem_trace()
 
-    arr = generate_random_array(2 * 10 ** 4, (-10 ** 9, 10 ** 9))
-
+    arr = generate_random_array(2*10 ** 4, (-10 ** 9, 10 ** 9))
     time, ans = get_function_execution_time_sec(merge_sort, arr)
 
     with open("io_folder/output.txt", "w") as file:

@@ -18,11 +18,15 @@ class Stack:
 def main():
     stack = Stack()
     ops = []
-    with open("io_folder/input.txt", 'r') as file:
-        n = int(file.readline())
-        for _ in range(n):
-            line = file.readline()
-            ops.append(line.split(' '))
+    # with open("io_folder/input.txt", 'r') as file:
+    #     n = int(file.readline())
+    #     for _ in range(n):
+    #         line = file.readline()
+    #         ops.append(line.split(' '))
+    r = range(10**3 // 5 - 10)
+    ops = ["+ 10000000" for _ in r]
+    for _ in r:
+        ops.append("-")
 
     with open('io_folder/output.txt', 'w') as file:
         for op in ops:

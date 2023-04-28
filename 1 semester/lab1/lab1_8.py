@@ -26,7 +26,7 @@ def func(arr: List[int], file: FileIO) -> List[int]:
 
     for i in range(n):
         if arr[i] != sorted_arr[i]:
-            file.write(f"Swap elements at indices {i} and {arr.index(sorted_arr[i])}")
+            file.write(f"Swap elements at indices {i} and {arr.index(sorted_arr[i])}\n")
             arr[arr.index(sorted_arr[i])], arr[i] = arr[i], arr[arr.index(sorted_arr[i])]
     return arr
 

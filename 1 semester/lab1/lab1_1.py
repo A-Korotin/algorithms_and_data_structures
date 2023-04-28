@@ -21,17 +21,18 @@ def insertion_sort(arr: List[int]) -> List[int]:
 def setup_input_array(n: int) -> None:
     with open("io_folder/input.txt", "w") as file:
         file.write(f"{n}\n")
-        file.write(" ".join(map(str, generate_random_array(n, number_range=(-100, 100)))))
+        file.write(" ".join(map(str, generate_random_array(n, number_range=(-10**9, 10**9)))))
 
 
 if __name__ == "__main__":
     start_mem_trace()
-    setup_input_array(1000)
+    # setup_input_array(1000)
+    #
+    # with open("io_folder/input.txt", "r") as file:
+    #     _ = int(file.readline())
+    #     arr = list(map(int, file.readline().split(" ")))
 
-    with open("io_folder/input.txt", "r") as file:
-        _ = int(file.readline())
-        arr = list(map(int, file.readline().split(" ")))
-
+    arr = generate_random_array(10 ** 4, (-10**4, 10**4))
     time, answer = get_function_execution_time_sec(insertion_sort, arr)
 
     with open("io_folder/output.txt", "w") as file:

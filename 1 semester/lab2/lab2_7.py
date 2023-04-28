@@ -30,13 +30,12 @@ def max_sub_array(array: List[int]) -> List[int]:
 if __name__ == "__main__":
     start_mem_trace()
 
-    arr = generate_random_array(10, (-5, 5))
+    arr = generate_random_array(1, (-10**9, 10**9))
     print(arr)
 
     with open("io_folder/output.txt", "w") as file:
         time, ans = get_function_execution_time_sec(max_sub_array, arr)
         file.write(" ".join(map(str, ans)))
-        print(ans)
 
     mem = get_max_mem_usage_mb()
     print_time_and_mem_usage_summary(time, mem)
